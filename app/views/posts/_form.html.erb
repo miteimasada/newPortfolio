@@ -1,0 +1,46 @@
+<%= form_with(model: post, local: true) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="current-user" >
+    <%= form.text_field :user_id , value: @current_user.id %>
+  </div>
+
+  <div class='post-container'>
+    <div class="field" maxlength="30">
+      <label class='label-title'>タイトル</label>
+        <%= form.text_field :title %>
+    </div>
+
+    <div class="field">
+    <label class='label-title'>概要</label>
+      <%= form.rich_text_area :content %>
+    </div>
+
+    <details>
+      <summary>STEP 1</summary>
+      <%= form.rich_text_area :step1 %>
+    </details>
+
+    <details>
+      <summary>STEP 2</summary>
+      <%= form.rich_text_area :step2 %>
+    </details>
+
+    <details>
+      <summary>STEP 3</summary>
+      <%= form.rich_text_area :step3 %>
+    </details>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "投稿する" %>
+  </div>
+<% end %>
